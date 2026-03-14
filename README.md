@@ -1,66 +1,42 @@
-## Foundry
+# Foundry Simple Storage
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+A beginner Solidity project built with Foundry, focused on understanding the fundamentals relevant to **smart contract auditing**.
 
-Foundry consists of:
+The emphasis here is on **code clarity and thorough comments** — each contract is annotated to explain what the code does and why, making it easier to reason about contract behavior during a security review.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## What's in this project
 
-## Documentation
+### `src/SimpleStorage.sol`
+A basic storage contract that demonstrates core Solidity concepts:
+- **State variables** — data stored on-chain
+- **Structs** — custom data types grouping related fields
+- **Dynamic arrays** — storing a list of `Person` structs
+- **Mappings** — key-value lookups (name → favorite number)
+- **View functions** — reading state without modifying it
 
-https://book.getfoundry.sh/
+### `script/DeploySimpleStorage.s.sol`
+A Foundry deployment script that demonstrates:
+- How Foundry scripts differ from contracts (they use `vm` cheatcodes)
+- `vm.startBroadcast()` / `vm.stopBroadcast()` — scoping which transactions get sent on-chain
+- Returning a deployed contract instance for post-deployment use
 
-## Usage
+## Tooling
 
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
+Built with [Foundry](https://book.getfoundry.sh/). Key commands:
 
 ```shell
-$ forge fmt
+forge build       # Compile contracts
+forge test        # Run tests
+forge fmt         # Format code
+forge snapshot    # Gas snapshots
+anvil             # Spin up a local Ethereum node
 ```
 
-### Gas Snapshots
+## Credits
 
-```shell
-$ forge snapshot
-```
+Based on the [Cyfrin Foundry Simple Storage](https://github.com/Cyfrin/foundry-simple-storage-cu/tree/main) course by [Patrick Collins](https://github.com/patrickalphac).
 
-### Anvil
+## Future work
 
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+- [ ] Write tests using Forge
+- [ ] Deploy to a local Anvil chain or a public testnet
